@@ -49,43 +49,53 @@ for contest in rankData:
 
 num = len(map['0'])
 y_offset = [0] * num # for x in range(0, num)]
-index = [x for x in range(1, num + 1)]
+# index = [x for x in range(1, num + 1)]
 
 
 start = 1
+contestList = [str(i) for i in range(1, 16)]
+tmplist = ['16A', '16B', '17','18A','18B']
+for i in tmplist: contestList.append(i) 
+for i in range(19, num - 1): contestList.append(str(i)) 
+# print(contestList)
+# print(len(contestList))
+xaxis = [i for i in range(num)]
+# print(xaxis)
+
 for rowv in range(start, 7):
     row = str(rowv)
     if row not in map: continue
     while len(map[row]) < num: map[row].insert(0, 0)
-    plt.bar(index, map[row], 1, y_offset, color = colors[rowv])
+    # print(len(xaxis))
+    # print(len(map[row]))
+    plt.bar(xaxis, map[row], 1, y_offset, color = colors[rowv])
     # print(pp1)
     # print(type(pp1))
     y_offset = [y_offset[i] + map[row][i] for i in range(len(y_offset))]
 
 
-username = 'CatherineZz'
+username = 'galiniunan'
 user = userData[username]
-userx = [str(i) for i in range(1, num + 4)]
-usery = [0] * (num + 3)
+# userx = [str(i) for i in range(1, num + 4)]
+userDict = {}
 
 for contest in user:
     userrank =  user[contest]
-    # userx.append(contest)
-    contestval = (int)(contest)
-    usery[contestval] = y_offset[contestval] - userrank
-    # print(contest)
-    # print(userrank)
+    userDict[contest] = userrank
 
-contestList = [i for i in range(1, num + 3)]
-# contestList.append(['16A', '16B', '17','18A','18B'])
-# contestList.append([str(i) for i in range(19, num)])
-
+usery = [] # * len(contestList)
 prev = 0
-for i in range(2, num + 3):
-    if usery[i] == 0: usery[i] = usery[i - 1]
-    # prev = usery[i]
+count = 0
 
-plt.step(userx, usery, where = 'post')
+
+for i in contestList:
+    if i not in userDict: usery.append(prev)
+    else: usery.append(max(0,y_offset[count] - userDict[i]))
+    prev = usery[-1]
+    count += 1
+
+
+plt.step(xaxis, usery, where = 'mid', color = 'k')
 
 plt.ylabel("Number of Participants")
 plt.xlabel("Leetcode Contest")

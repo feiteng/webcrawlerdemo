@@ -13,18 +13,18 @@ if os.path.isfile(userfile):
     with open(userfile, 'r') as f:
         json_str = json.load(f)
         userData = json.loads(json_str)
-else: userData = {}
 
-# if os.path.isfile(rankfile):
-#     with open(rankfile, 'r') as f:
-#         json_str = json.load(f)
-#         percentileData = json.loads(json_str)
-# else:
-percentileData = {}
-contestCountData = {}
+if os.path.isfile(rankfile):
+    with open(rankfile, 'r') as f:
+        json_str = json.load(f)
+        percentileData = json.loads(json_str)
+
+if os.path.isfile(contestFile):
+    with open(contestFile, 'r') as f:
+        json_str = json.load(f)
+        contestCountData = json.loads(json_str)
+
 numberofQuestionsData = {}
-
-
 def update(contest):
     results = fetchRanking(contest, 500)
     count = {}
@@ -57,7 +57,7 @@ def update(contest):
         percentileData[str(contest)][k] = count[k]
     contestCountData[contest] = totalCandidate
 
-for contest in range(1, 158):
+for contest in range(158, 159):
     if contest == 16:
         update('16A')
         update('16B')
