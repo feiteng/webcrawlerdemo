@@ -8,6 +8,7 @@ import json
 import os
 import argparse
 from FetchRanks import fetchRanking
+from FindUser import findUserName
 
 # from pprint import pprint
 
@@ -74,37 +75,47 @@ for rowv in range(start, 7):
     y_offset = [y_offset[i] + map[row][i] for i in range(len(y_offset))]
 
 
-username = 'galiniunan'
-user = userData[username]
-# userx = [str(i) for i in range(1, num + 4)]
-userDict = {}
+username = 'timfan'
+if username not in userData:
+    users = findUserName(username)
+    username = users[0]
+    print(users)
+try:
+    user = userData[username]
+    # userx = [str(i) for i in range(1, num + 4)]
+    userDict = {}
 
-for contest in user:
-    userrank =  user[contest]
-    userDict[contest] = userrank
-
-usery = [] # * len(contestList)
-prev = 0
-count = 0
-
-
-for i in contestList:
-    if i not in userDict: usery.append(prev)
-    else: usery.append(max(0,y_offset[count] - userDict[i]))
-    prev = usery[-1]
-    count += 1
+    for contest in user:
+        userrank =  user[contest]
+        userDict[contest] = userrank
+    # print(userDict)
+    usery = [] # * len(contestList)
+    prev = 0
+    count = 0
 
 
-plt.step(xaxis, usery, where = 'mid', color = 'k')
+    for i in contestList:
+        if i not in userDict: usery.append(prev)
+        else: usery.append(max(0,y_offset[count] - userDict[i]))
+        prev = usery[-1]
+        count += 1
+        # print(i)
+        # print(userDict[i])
 
+
+    plt.step(xaxis, usery, where = 'mid', color = 'k')
+    legend = (username, 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')
+    if start == 0: legend = (username, 'Solved 0', 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')
+except Exception as err:
+    print(err)
+    legend = ('Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')
+    if start == 0: legend = ('Solved 0', 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')
+    pass
 plt.ylabel("Number of Participants")
 plt.xlabel("Leetcode Contest")
 plt.xticks([x for x in range(0, num, 10)])
-legend = (username, 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')
-if start == 0: legend = (username, 'Solved 0', 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')
 plt.legend(legend)
 plt.show()
-
 
 #
 #

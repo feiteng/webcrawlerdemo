@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3377e3d-0f06-4300-9a75-d790c85e6aaf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/lc-score-board.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lc-score-board.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/FetchRanks.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/FetchRanks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/contest.json" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/contest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/getAllUserData.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/getAllUserData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/percentile.json" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/percentile.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/printPercentile.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/printPercentile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/user.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/printPercentile.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/printContest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,21 +11,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="visualizer" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>fetchRanking</find>
-      <find>page</find>
-      <find>y119777</find>
-      <find>p</find>
-      <find>print</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,7 +30,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Python/Python35-32/python.exe" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -62,8 +50,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.printPercentile">
-    <configuration name="FetchRanks" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.printContest">
+    <configuration name="FindUser" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="lc-score-board" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -75,28 +63,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/FetchRanks.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="PlotGroupCurve" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="lc-score-board" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/generateEXCEL/Data" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/generateEXCEL/Data/PlotGroupCurve.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/FindUser.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -126,6 +93,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="printContest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="lc-score-board" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/getRank" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/printContest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="printPercentile" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="lc-score-board" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -138,7 +126,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/printPercentile.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\lifeiteng\projects\visualizer\getRank\printContest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="printPercentile_" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="lc-score-board" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/getRank" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/printPercentile_.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -148,17 +157,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.FetchRanks" />
       <item itemvalue="Python.getAllUserData" />
-      <item itemvalue="Python.PlotGroupCurve" />
       <item itemvalue="Python.printPercentile" />
+      <item itemvalue="Python.printPercentile_" />
+      <item itemvalue="Python.printContest" />
+      <item itemvalue="Python.FindUser" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.printContest" />
+        <item itemvalue="Python.printPercentile_" />
+        <item itemvalue="Python.FindUser" />
         <item itemvalue="Python.printPercentile" />
         <item itemvalue="Python.getAllUserData" />
-        <item itemvalue="Python.PlotGroupCurve" />
-        <item itemvalue="Python.FetchRanks" />
       </list>
     </recent_temporary>
   </component>
@@ -185,5 +196,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/getRank/printContest.py</url>
+          <line>101</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
