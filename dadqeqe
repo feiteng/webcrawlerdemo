@@ -1,0 +1,483 @@
+[33mcommit 5e0025765ad33e53209cb6166ee4ca15376cfacf[m
+Author: Feiteng Li <li.feiteng@gmail.com>
+Date:   Tue Oct 15 00:21:28 2019 -0400
+
+    update
+
+[1mdiff --git a/.idea/workspace.xml b/.idea/workspace.xml[m
+[1mindex b395230..2d807d0 100644[m
+[1m--- a/.idea/workspace.xml[m
+[1m+++ b/.idea/workspace.xml[m
+[36m@@ -2,15 +2,8 @@[m
+ <project version="4">[m
+   <component name="ChangeListManager">[m
+     <list default="true" id="f3377e3d-0f06-4300-9a75-d790c85e6aaf" name="Default" comment="">[m
+[31m-      <change beforePath="$PROJECT_DIR$/.idea/lc-score-board.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lc-score-board.iml" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />[m
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/getRank/FetchRanks.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/FetchRanks.py" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/getRank/contest.json" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/contest.json" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/getRank/getAllUserData.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/getAllUserData.py" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/getRank/percentile.json" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/percentile.json" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/getRank/printPercentile.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/printPercentile.py" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/getRank/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/user.json" afterDir="false" />[m
+[32m+[m[32m      <change beforePath="$PROJECT_DIR$/getRank/printPercentile.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/printContest.py" afterDir="false" />[m
+     </list>[m
+     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />[m
+     <option name="SHOW_DIALOG" value="false" />[m
+[36m@@ -18,6 +11,9 @@[m
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />[m
+     <option name="LAST_RESOLUTION" value="IGNORE" />[m
+   </component>[m
+[32m+[m[32m  <component name="FavoritesManager">[m
+[32m+[m[32m    <favorites_list name="visualizer" />[m
+[32m+[m[32m  </component>[m
+   <component name="FileTemplateManagerImpl">[m
+     <option name="RECENT_TEMPLATES">[m
+       <list>[m
+[36m@@ -25,15 +21,6 @@[m
+       </list>[m
+     </option>[m
+   </component>[m
+[31m-  <component name="FindInProjectRecents">[m
+[31m-    <findStrings>[m
+[31m-      <find>fetchRanking</find>[m
+[31m-      <find>page</find>[m
+[31m-      <find>y119777</find>[m
+[31m-      <find>p</find>[m
+[31m-      <find>print</find>[m
+[31m-    </findStrings>[m
+[31m-  </component>[m
+   <component name="Git.Settings">[m
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />[m
+   </component>[m
+[36m@@ -43,7 +30,8 @@[m
+   </component>[m
+   <component name="PropertiesComponent">[m
+     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Python/Python35-32/python.exe" />[m
+[31m-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />[m
+[32m+[m[32m    <property name="restartRequiresConfirmation" value="false" />[m
+[32m+[m[32m    <property name="settings.editor.selected.configurable" value="preferences.keymap" />[m
+   </component>[m
+   <component name="RecentsManager">[m
+     <key name="CopyFile.RECENT_KEYS">[m
+[36m@@ -62,8 +50,8 @@[m
+       </list>[m
+     </option>[m
+   </component>[m
+[31m-  <component name="RunManager" selected="Python.printPercentile">[m
+[31m-    <configuration name="FetchRanks" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+[32m+[m[32m  <component name="RunManager" selected="Python.printContest">[m
+[32m+[m[32m    <configuration name="FindUser" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+       <module name="lc-score-board" />[m
+       <option name="INTERPRETER_OPTIONS" value="" />[m
+       <option name="PARENT_ENVS" value="true" />[m
+[36m@@ -75,28 +63,7 @@[m
+       <option name="IS_MODULE_SDK" value="true" />[m
+       <option name="ADD_CONTENT_ROOTS" value="true" />[m
+       <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[31m-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/FetchRanks.py" />[m
+[31m-      <option name="PARAMETERS" value="" />[m
+[31m-      <option name="SHOW_COMMAND_LINE" value="false" />[m
+[31m-      <option name="EMULATE_TERMINAL" value="false" />[m
+[31m-      <option name="MODULE_MODE" value="false" />[m
+[31m-      <option name="REDIRECT_INPUT" value="false" />[m
+[31m-      <option name="INPUT_FILE" value="" />[m
+[31m-      <method v="2" />[m
+[31m-    </configuration>[m
+[31m-    <configuration name="PlotGroupCurve" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+[31m-      <module name="lc-score-board" />[m
+[31m-      <option name="INTERPRETER_OPTIONS" value="" />[m
+[31m-      <option name="PARENT_ENVS" value="true" />[m
+[31m-      <envs>[m
+[31m-        <env name="PYTHONUNBUFFERED" value="1" />[m
+[31m-      </envs>[m
+[31m-      <option name="SDK_HOME" value="" />[m
+[31m-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/generateEXCEL/Data" />[m
+[31m-      <option name="IS_MODULE_SDK" value="true" />[m
+[31m-      <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[31m-      <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[31m-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/generateEXCEL/Data/PlotGroupCurve.py" />[m
+[32m+[m[32m      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/FindUser.py" />[m
+       <option name="PARAMETERS" value="" />[m
+       <option name="SHOW_COMMAND_LINE" value="false" />[m
+       <option name="EMULATE_TERMINAL" value="false" />[m
+[36m@@ -126,6 +93,27 @@[m
+       <option name="INPUT_FILE" value="" />[m
+       <method v="2" />[m
+     </configuration>[m
+[32m+[m[32m    <configuration name="printContest" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+[32m+[m[32m      <module name="lc-score-board" />[m
+[32m+[m[32m      <option name="INTERPRETER_OPTIONS" value="" />[m
+[32m+[m[32m      <option name="PARENT_ENVS" value="true" />[m
+[32m+[m[32m      <envs>[m
+[32m+[m[32m        <env name="PYTHONUNBUFFERED" value="1" />[m
+[32m+[m[32m      </envs>[m
+[32m+[m[32m      <option name="SDK_HOME" value="" />[m
+[32m+[m[32m      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/getRank" />[m
+[32m+[m[32m      <option name="IS_MODULE_SDK" value="true" />[m
+[32m+[m[32m      <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[32m+[m[32m      <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[32m+[m[32m      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/printContest.py" />[m
+[32m+[m[32m      <option name="PARAMETERS" value="" />[m
+[32m+[m[32m      <option name="SHOW_COMMAND_LINE" value="false" />[m
+[32m+[m[32m      <option name="EMULATE_TERMINAL" value="false" />[m
+[32m+[m[32m      <option name="MODULE_MODE" value="false" />[m
+[32m+[m[32m      <option name="REDIRECT_INPUT" value="false" />[m
+[32m+[m[32m      <option name="INPUT_FILE" value="" />[m
+[32m+[m[32m      <method v="2" />[m
+[32m+[m[32m    </configuration>[m
+     <configuration name="printPercentile" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+       <module name="lc-score-board" />[m
+       <option name="INTERPRETER_OPTIONS" value="" />[m
+[36m@@ -138,7 +126,28 @@[m
+       <option name="IS_MODULE_SDK" value="true" />[m
+       <option name="ADD_CONTENT_ROOTS" value="true" />[m
+       <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[31m-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/printPercentile.py" />[m
+[32m+[m[32m      <option name="SCRIPT_NAME" value="C:\Users\lifeiteng\projects\visualizer\getRank\printContest.py" />[m
+[32m+[m[32m      <option name="PARAMETERS" value="" />[m
+[32m+[m[32m      <option name="SHOW_COMMAND_LINE" value="false" />[m
+[32m+[m[32m      <option name="EMULATE_TERMINAL" value="false" />[m
+[32m+[m[32m      <option name="MODULE_MODE" value="false" />[m
+[32m+[m[32m      <option name="REDIRECT_INPUT" value="false" />[m
+[32m+[m[32m      <option name="INPUT_FILE" value="" />[m
+[32m+[m[32m      <method v="2" />[m
+[32m+[m[32m    </configuration>[m
+[32m+[m[32m    <configuration name="printPercentile_" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+[32m+[m[32m      <module name="lc-score-board" />[m
+[32m+[m[32m      <option name="INTERPRETER_OPTIONS" value="" />[m
+[32m+[m[32m      <option name="PARENT_ENVS" value="true" />[m
+[32m+[m[32m      <envs>[m
+[32m+[m[32m        <env name="PYTHONUNBUFFERED" value="1" />[m
+[32m+[m[32m      </envs>[m
+[32m+[m[32m      <option name="SDK_HOME" value="" />[m
+[32m+[m[32m      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/getRank" />[m
+[32m+[m[32m      <option name="IS_MODULE_SDK" value="true" />[m
+[32m+[m[32m      <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[32m+[m[32m      <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[32m+[m[32m      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/printPercentile_.py" />[m
+       <option name="PARAMETERS" value="" />[m
+       <option name="SHOW_COMMAND_LINE" value="false" />[m
+       <option name="EMULATE_TERMINAL" value="false" />[m
+[36m@@ -148,17 +157,19 @@[m
+       <method v="2" />[m
+     </configuration>[m
+     <list>[m
+[31m-      <item itemvalue="Python.FetchRanks" />[m
+       <item itemvalue="Python.getAllUserData" />[m
+[31m-      <item itemvalue="Python.PlotGroupCurve" />[m
+       <item itemvalue="Python.printPercentile" />[m
+[32m+[m[32m      <item itemvalue="Python.printPercentile_" />[m
+[32m+[m[32m      <item itemvalue="Python.printContest" />[m
+[32m+[m[32m      <item itemvalue="Python.FindUser" />[m
+     </list>[m
+     <recent_temporary>[m
+       <list>[m
+[32m+[m[32m        <item itemvalue="Python.printContest" />[m
+[32m+[m[32m        <item itemvalue="Python.printPercentile_" />[m
+[32m+[m[32m        <item itemvalue="Python.FindUser" />[m
+         <item itemvalue="Python.printPercentile" />[m
+         <item itemvalue="Python.getAllUserData" />[m
+[31m-        <item itemvalue="Python.PlotGroupCurve" />[m
+[31m-        <item itemvalue="Python.FetchRanks" />[m
+       </list>[m
+     </recent_temporary>[m
+   </component>[m
+[36m@@ -186,4 +197,15 @@[m
+       </map>[m
+     </option>[m
+   </component>[m
+[32m+[m[32m  <component name="XDebuggerManager">[m
+[32m+[m[32m    <breakpoint-manager>[m
+[32m+[m[32m      <breakpoints>[m
+[32m+[m[32m        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">[m
+[32m+[m[32m          <url>file://$PROJECT_DIR$/getRank/printContest.py</url>[m
+[32m+[m[32m          <line>101</line>[m
+[32m+[m[32m          <option name="timeStamp" value="1" />[m
+[32m+[m[32m        </line-breakpoint>[m
+[32m+[m[32m      </breakpoints>[m
+[32m+[m[32m    </breakpoint-manager>[m
+[32m+[m[32m  </component>[m
+ </project>[m
+\ No newline at end of file[m
+[1mdiff --git a/Figure_0.png b/Figure_0.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e1807e8[m
+Binary files /dev/null and b/Figure_0.png differ
+[1mdiff --git a/Figure_1.png b/Figure_1.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ed7b376[m
+Binary files /dev/null and b/Figure_1.png differ
+[1mdiff --git a/getRank/FindUser.py b/getRank/FindUser.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7ea3d91[m
+[1m--- /dev/null[m
+[1m+++ b/getRank/FindUser.py[m
+[36m@@ -0,0 +1,45 @@[m
+[32m+[m[32mimport matplotlib.pyplot as plt[m
+[32m+[m[32mimport numpy as np[m
+[32m+[m[32mimport json[m
+[32m+[m
+[32m+[m[32muserFile = 'user.json'[m
+[32m+[m
+[32m+[m[32mwith open(userFile, 'r') as f:[m
+[32m+[m[32m    json_str = json.load(f)[m
+[32m+[m[32m    userData = json.loads(json_str)[m
+[32m+[m
+[32m+[m[32mdef editDistance(s1, s2):[m
+[32m+[m[32m    m = len(s1)[m
+[32m+[m[32m    n = len(s2)[m
+[32m+[m[32m    dp = [[0 for x in range(n + 1)] for y in range(m + 1)][m
+[32m+[m[32m    for i in range(m): dp[i + 1][0] = i + 1[m
+[32m+[m[32m    for j in range(n): dp[0][j + 1] = j + 1[m
+[32m+[m[32m    for i in range(m):[m
+[32m+[m[32m        for j in range(n):[m
+[32m+[m[32m            # print("" + str(i) + "_" + str(j))[m
+[32m+[m[32m            if s1[i] == s2[j]: dp[i + 1][j + 1] = dp[i][j][m
+[32m+[m[32m            else: dp[i + 1][j + 1] = 1 + min(dp[i + 1][j], dp[i][j + 1])[m
+[32m+[m
+[32m+[m[32m    return dp[m][n][m
+[32m+[m
+[32m+[m[32mdef findUserName(username):[m
+[32m+[m[32m    # edit distance[m
+[32m+[m[32m    len = 100[m
+[32m+[m[32m    re = [][m
+[32m+[m[32m    for str_name in userData:[m
+[32m+[m[32m    # for str_name in ['daruba', 'aruba1']:[m
+[32m+[m[32m    #     print(str_name)[m
+[32m+[m[32m        d = editDistance(username, str_name)[m
+[32m+[m[32m        # print(d)[m
+[32m+[m[32m        # print(str_name)[m
+[32m+[m[32m        if d == len:[m
+[32m+[m[32m            re.append(str_name)[m
+[32m+[m[32m        if d < len:[m
+[32m+[m[32m            len = d;[m
+[32m+[m[32m            re = [][m
+[32m+[m[32m            re.append(str_name)[m
+[32m+[m[32m            # print(d)[m
+[32m+[m[32m            # print(str_name)[m
+[32m+[m[32m    return re[m
+[32m+[m
+[32m+[m[32m# print(findUserName('aruba'))[m
+\ No newline at end of file[m
+[1mdiff --git a/getRank/__pycache__/FindUser.cpython-37.pyc b/getRank/__pycache__/FindUser.cpython-37.pyc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4825e71[m
+Binary files /dev/null and b/getRank/__pycache__/FindUser.cpython-37.pyc differ
+[1mdiff --git a/getRank/printPercentile.py b/getRank/printContest.py[m
+[1msimilarity index 72%[m
+[1mrename from getRank/printPercentile.py[m
+[1mrename to getRank/printContest.py[m
+[1mindex e33b47b..fcb057b 100644[m
+[1m--- a/getRank/printPercentile.py[m
+[1m+++ b/getRank/printContest.py[m
+[36m@@ -8,6 +8,7 @@[m [mimport json[m
+ import os[m
+ import argparse[m
+ from FetchRanks import fetchRanking[m
+[32m+[m[32mfrom FindUser import findUserName[m
+ [m
+ # from pprint import pprint[m
+ [m
+[36m@@ -74,38 +75,48 @@[m [mfor rowv in range(start, 7):[m
+     y_offset = [y_offset[i] + map[row][i] for i in range(len(y_offset))][m
+ [m
+ [m
+[31m-username = 'galiniunan'[m
+[31m-user = userData[username][m
+[31m-# userx = [str(i) for i in range(1, num + 4)][m
+[31m-userDict = {}[m
+[32m+[m[32musername = 'timfan'[m
+[32m+[m[32mif username not in userData:[m
+[32m+[m[32m    users = findUserName(username)[m
+[32m+[m[32m    username = users[0][m
+[32m+[m[32m    print(users)[m
+[32m+[m[32mtry:[m
+[32m+[m[32m    user = userData[username][m
+[32m+[m[32m    # userx = [str(i) for i in range(1, num + 4)][m
+[32m+[m[32m    userDict = {}[m
+ [m
+[31m-for contest in user:[m
+[31m-    userrank =  user[contest][m
+[31m-    userDict[contest] = userrank[m
+[31m-[m
+[31m-usery = [] # * len(contestList)[m
+[31m-prev = 0[m
+[31m-count = 0[m
+[32m+[m[32m    for contest in user:[m
+[32m+[m[32m        userrank =  user[contest][m
+[32m+[m[32m        userDict[contest] = userrank[m
+[32m+[m[32m    # print(userDict)[m
+[32m+[m[32m    usery = [] # * len(contestList)[m
+[32m+[m[32m    prev = 0[m
+[32m+[m[32m    count = 0[m
+ [m
+ [m
+[31m-for i in contestList:[m
+[31m-    if i not in userDict: usery.append(prev)[m
+[31m-    else: usery.append(max(0,y_offset[count] - userDict[i]))[m
+[31m-    prev = usery[-1][m
+[31m-    count += 1[m
+[32m+[m[32m    for i in contestList:[m
+[32m+[m[32m        if i not in userDict: usery.append(prev)[m
+[32m+[m[32m        else: usery.append(max(0,y_offset[count] - userDict[i]))[m
+[32m+[m[32m        prev = usery[-1][m
+[32m+[m[32m        count += 1[m
+[32m+[m[32m        # print(i)[m
+[32m+[m[32m        # print(userDict[i])[m
+ [m
+ [m
+[31m-plt.step(xaxis, usery, where = 'mid', color = 'k')[m
+[31m-[m
+[32m+[m[32m    plt.step(xaxis, usery, where = 'mid', color = 'k')[m
+[32m+[m[32m    legend = (username, 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+[32m+[m[32m    if start == 0: legend = (username, 'Solved 0', 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+[32m+[m[32mexcept Exception as err:[m
+[32m+[m[32m    print(err)[m
+[32m+[m[32m    legend = ('Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+[32m+[m[32m    if start == 0: legend = ('Solved 0', 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+[32m+[m[32m    pass[m
+ plt.ylabel("Number of Participants")[m
+ plt.xlabel("Leetcode Contest")[m
+ plt.xticks([x for x in range(0, num, 10)])[m
+[31m-legend = (username, 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+[31m-if start == 0: legend = (username, 'Solved 0', 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+ plt.legend(legend)[m
+ plt.show()[m
+ [m
+[31m-[m
+ #[m
+ #[m
+ #[m
+[1mdiff --git a/getRank/printPercentile_.py b/getRank/printPercentile_.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2a90e46[m
+[1m--- /dev/null[m
+[1m+++ b/getRank/printPercentile_.py[m
+[36m@@ -0,0 +1,125 @@[m
+[32m+[m
+[32m+[m[32mimport time[m
+[32m+[m[32mimport datetime[m
+[32m+[m[32mimport collections[m
+[32m+[m[32mimport matplotlib.pyplot as plt[m
+[32m+[m[32mimport matplotlib.ticker as ticker[m
+[32m+[m[32mimport numpy as np[m
+[32m+[m[32mimport json[m
+[32m+[m[32mimport os[m
+[32m+[m[32mimport argparse[m
+[32m+[m[32mfrom FetchRanks import fetchRanking[m
+[32m+[m[32mfrom FindUser import findUserName[m
+[32m+[m
+[32m+[m[32m# from pprint import pprint[m
+[32m+[m
+[32m+[m
+[32m+[m[32mcontestFile = 'contest.json'[m
+[32m+[m[32mrankfile = 'percentile.json'[m
+[32m+[m[32muserFile = 'user.json'[m
+[32m+[m
+[32m+[m[32mwith open(contestFile, 'r') as f:[m
+[32m+[m[32m    json_str = json.load(f)[m
+[32m+[m[32m    contestData = json.loads(json_str)[m
+[32m+[m
+[32m+[m[32mwith open(userFile, 'r') as f:[m
+[32m+[m[32m    json_str = json.load(f)[m
+[32m+[m[32m    userData = json.loads(json_str)[m
+[32m+[m
+[32m+[m[32mwith open(rankfile, 'r') as f:[m
+[32m+[m[32m    json_str = json.load(f)[m
+[32m+[m[32m    rankData = json.loads(json_str)[m
+[32m+[m
+[32m+[m[32m# maxi = 0[m
+[32m+[m[32m# for test in contestData:[m
+[32m+[m[32m#     maxi = max(maxi, contestData[test])[m
+[32m+[m
+[32m+[m
+[32m+[m[32m# print(user)[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32mcolors = ['#6c757d', '#28a745', '#17a2b8', '#ffc107', '#dc3545', '#007bff'][m
+[32m+[m[32mnumberofContest = len(contestData)[m
+[32m+[m
+[32m+[m[32mmap = {}[m
+[32m+[m[32mfor contest in rankData:[m
+[32m+[m[32m    for rank in rankData[contest]:[m
+[32m+[m[32m        if rank not in map: map[rank] = [][m
+[32m+[m[32m        # print(rankData[contest][rank])[m
+[32m+[m[32m        map[rank].append(rankData[contest][rank])[m
+[32m+[m
+[32m+[m[32mnum = len(map['0'])[m
+[32m+[m[32my_offset = [0] * num # for x in range(0, num)][m
+[32m+[m[32m# index = [x for x in range(1, num + 1)][m
+[32m+[m
+[32m+[m
+[32m+[m[32mstart = 1[m
+[32m+[m[32mcontestList = [str(i) for i in range(1, 16)][m
+[32m+[m[32mtmplist = ['16A', '16B', '17','18A','18B'][m
+[32m+[m[32mfor i in tmplist: contestList.append(i)[m
+[32m+[m[32mfor i in range(19, num - 1): contestList.append(str(i))[m
+[32m+[m[32m# print(contestList)[m
+[32m+[m[32m# print(len(contestList))[m
+[32m+[m[32mxaxis = [i for i in range(num)][m
+[32m+[m[32m# print(xaxis)[m
+[32m+[m
+[32m+[m[32my_total = [0] * num[m
+[32m+[m[32mfor rowv in range(start, 7):[m
+[32m+[m[32m    row = str(rowv)[m
+[32m+[m[32m    if row not in map: continue[m
+[32m+[m[32m    while len(map[row]) < num: map[row].insert(0, 0)[m
+[32m+[m[32m    y_total = [y_total[i] + map[row][i] for i in range(len(y_offset))][m
+[32m+[m
+[32m+[m
+[32m+[m[32mfor rowv in range(start, 7):[m
+[32m+[m[32m    row = str(rowv)[m
+[32m+[m[32m    if row not in map: continue[m
+[32m+[m[32m    while len(map[row]) < num: map[row].insert(0, 0)[m
+[32m+[m[32m    # print(len(xaxis))[m
+[32m+[m[32m    # print(len(map[row]))[m
+[32m+[m[32m    maprow = [map[row][i] / y_total[i] for i in range(num)][m
+[32m+[m[32m    plt.bar(xaxis, maprow, 1, y_offset, color = colors[rowv])[m
+[32m+[m[32m    # print(pp1)[m
+[32m+[m[32m    # print(type(pp1))[m
+[32m+[m[32m    y_offset = [y_offset[i] + map[row][i] / y_total[i] for i in range(len(y_offset))][m
+[32m+[m
+[32m+[m
+[32m+[m[32musername = 'aruba1'[m
+[32m+[m[32mif username not in userData:[m
+[32m+[m[32m    users = findUserName(username)[m
+[32m+[m[32m    username = users[0][m
+[32m+[m[32m    print(users)[m
+[32m+[m[32mprint(username)[m
+[32m+[m[32mtry:[m
+[32m+[m[32m    user = userData[username][m
+[32m+[m[32m    # userx = [str(i) for i in range(1, num + 4)][m
+[32m+[m[32m    userDict = {}[m
+[32m+[m
+[32m+[m[32m    for contest in user:[m
+[32m+[m[32m        userrank =  user[contest][m
+[32m+[m[32m        userDict[contest] = userrank[m
+[32m+[m
+[32m+[m[32m    usery = [] # * len(contestList)[m
+[32m+[m[32m    prev = 0[m
+[32m+[m[32m    count = 0[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    for i in contestList:[m
+[32m+[m[32m        if i not in userDict: usery.append(prev)[m
+[32m+[m[32m        else: usery.append(max(0,y_offset[count] - userDict[i] / y_total[count]))[m
+[32m+[m[32m        prev = usery[-1][m
+[32m+[m[32m        count += 1[m
+[32m+[m[32m    plt.step(xaxis, usery, where = 'mid', color = 'k')[m
+[32m+[m[32m    legend = (username, 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+[32m+[m[32m    if start == 0: legend = (username, 'Solved 0', 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+[32m+[m[32mexcept Exception as err:[m
+[32m+[m[32m    print(err)[m
+[32m+[m[32m    legend = ('Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+[32m+[m[32m    if start == 0: legend = ('Solved 0', 'Solved 1', 'Solved 2', 'Solved 3', 'Solved 4')[m
+[32m+[m[32m    pass[m
+[32m+[m[32mplt.ylabel("Percentage of Participants")[m
+[32m+[m[32mplt.xlabel("Leetcode Contest")[m
+[32m+[m[32mplt.legend(legend)[m
+[32m+[m[32mplt.gca().set_yticklabels(['{:.0f}%'.format(x*100) for x in plt.gca().get_yticks()])[m
+[32m+[m[32mplt.show()[m

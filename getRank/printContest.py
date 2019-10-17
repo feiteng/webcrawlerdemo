@@ -115,7 +115,7 @@ plt.ylabel("Number of Participants")
 plt.xlabel("Leetcode Contest")
 plt.xticks([x for x in range(0, num, 10)])
 plt.legend(legend)
-plt.show()
+plt.savefig(username + 'contest')
 
 #
 #
