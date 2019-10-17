@@ -29,8 +29,10 @@ for username in userData:
 	detail = getSubmission(username)
 	submit[username] = detail #[success, total]
 	count += 1
-	if count % 100 == 0: print(count)
+	# if count % 100 == 0: print(count)
+	print(str(count) + username)
 	# time.sleep(.1)
+
 
 
 userSubmitJson = json.dumps(submit)

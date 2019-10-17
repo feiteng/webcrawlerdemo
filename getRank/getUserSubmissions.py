@@ -12,8 +12,10 @@ def getSubmission(username):
     r = requests.get(url)
     # print(r.status_code)
     while r.status_code != 200:
+        print('retrying..' + username)
         time.sleep(1)
         r = requests.get(url)
+    # print(username)
     text = r.text
     soup = BeautifulSoup(text, 'html.parser')
     information = soup.find_all(class_='badge progress-bar-success')
@@ -37,7 +39,7 @@ def getSubmission(username):
         # print('user = %s, submission = %s' % (username, res))
         return res
     except:
-        print(username)
+        print('Cannot Get' + username)
         time.sleep(5)
         pass
 	

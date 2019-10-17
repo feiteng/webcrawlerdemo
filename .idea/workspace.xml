@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f3377e3d-0f06-4300-9a75-d790c85e6aaf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/aruba1percentile.png" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/aruba1percentile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/getAllUserSubmission.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/getAllUserSubmission.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getRank/getUserSubmissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/getUserSubmissions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/printPercentile_.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/printPercentile_.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getAllUserSubmission.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="getAllUserSubmission.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/getRank/getAllUserSubmission.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+            <state relative-caret-position="274">
+              <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -40,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getUserSubmissions.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="getUserSubmissions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/getRank/getUserSubmissions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+            <state relative-caret-position="288">
+              <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -70,10 +69,11 @@
         <option value="$PROJECT_DIR$/getRank/printContest.py" />
         <option value="$PROJECT_DIR$/getRank/printPercentile_.py" />
         <option value="$PROJECT_DIR$/getRank/getUserSubmissions.py" />
+        <option value="$PROJECT_DIR$/getRank/getAllUserSubmission.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="120" />
     <option name="y" value="118" />
     <option name="width" value="1315" />
@@ -330,22 +330,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/getRank/getAllUserSubmission.py">
+    <entry file="file://$PROJECT_DIR$/getRank/getUserSubmissions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+        <state relative-caret-position="288">
+          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/getRank/getUserSubmissions.py">
+    <entry file="file://$PROJECT_DIR$/getRank/getAllUserSubmission.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+        <state relative-caret-position="274">
+          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
