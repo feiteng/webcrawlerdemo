@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3377e3d-0f06-4300-9a75-d790c85e6aaf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/getRank/getUserSplit_.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/getAllUserSubmission.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/getUserSubmissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/getUserSubmissions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getRank/printContest.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/printContest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/splitUser.py" beforeDir="false" afterPath="$PROJECT_DIR$/getRank/splitUser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getRank/usersplit_9" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,8 +40,8 @@
       <file leaf-file-name="getUserSplit_.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/getRank/getUserSplit_.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="172">
+              <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -40,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getUserSplit_Submission.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/getRank/getUserSplit_Submission.py">
+      <file leaf-file-name="get0.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/getRank/get0.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="32">
-              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+              <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -60,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="splitUser.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="splitUser.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/getRank/splitUser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+            <state relative-caret-position="212">
+              <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
               </folding>
@@ -102,9 +111,9 @@
         <option value="$PROJECT_DIR$/getRank/printPercentile_.py" />
         <option value="$PROJECT_DIR$/getRank/getUserSubmissions.py" />
         <option value="$PROJECT_DIR$/getRank/printContest.py" />
-        <option value="$PROJECT_DIR$/getRank/splitUser.py" />
         <option value="$PROJECT_DIR$/getRank/getAllUserSubmission.py" />
         <option value="$PROJECT_DIR$/getRank/getUserSplit_Submission.py" />
+        <option value="$PROJECT_DIR$/getRank/splitUser.py" />
       </list>
     </option>
   </component>
@@ -164,7 +173,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.splitUser">
+  <component name="RunManager" selected="Python.get0">
+    <configuration name="get0" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="lc-score-board" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/getRank" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/get0.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="getAllUserSubmission" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="lc-score-board" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -219,24 +246,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="printPercentile_" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="lc-score-board" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/getRank" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getRank/printPercentile_.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="splitUser" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="lc-score-board" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -256,19 +265,19 @@
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list>
-      <item itemvalue="Python.printPercentile_" />
       <item itemvalue="Python.printContest" />
       <item itemvalue="Python.getAllUserSubmission" />
       <item itemvalue="Python.getUserSubmissions" />
       <item itemvalue="Python.splitUser" />
+      <item itemvalue="Python.get0" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.get0" />
         <item itemvalue="Python.splitUser" />
         <item itemvalue="Python.printContest" />
         <item itemvalue="Python.getAllUserSubmission" />
         <item itemvalue="Python.getUserSubmissions" />
-        <item itemvalue="Python.printPercentile_" />
       </list>
     </recent_temporary>
   </component>
@@ -385,15 +394,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/getRank/splitUser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
-          <folding>
-            <element signature="e#1#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/getRank/usersplit_0">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/getRank/printContest.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -406,18 +408,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/getRank/getUserSplit_.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="172">
+          <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/getRank/getUserSplit_Submission.py">
+    <entry file="file://$PROJECT_DIR$/getRank/get0.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+          <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/getRank/splitUser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
+          <folding>
+            <element signature="e#1#12#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

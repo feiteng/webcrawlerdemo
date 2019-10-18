@@ -30,7 +30,7 @@ for username in userData:
     count += 1
     if count == 11000:
         usernamesJson = json.dumps(names)
-        filname = 'usersplit_' + str(tcount)
+        filname = 'usersplit_' + str(tcount) + '.json'
         with open(filname, 'w') as f:
             json.dump(usernamesJson, f)
         count = 0
@@ -38,7 +38,7 @@ for username in userData:
         names = {}
 
 usernamesJson = json.dumps(names)
-filname = 'usersplit_' + str(tcount)
+filname = 'usersplit_' + str(tcount) + '.json'
 with open(filname, 'w') as f:
     json.dump(usernamesJson, f)
 count = 0
