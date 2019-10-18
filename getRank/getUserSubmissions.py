@@ -11,13 +11,19 @@ def getSubmission(username):
     url = "https://leetcode.com/" + username
     r = requests.get(url)
     # print(r.status_code)
+    count = 0
+
     if r.status_code == 404:
         print('incorrect name..' + username)
-        return []
+        return ['']
     while r.status_code != 200:
+        if count > 5:
+            print('Waited too long for..' + username)
+            return ['']
         print('retrying..' + username)
         time.sleep(5)
         r = requests.get(url)
+        count += 1
     # print(username)
     text = r.text
     soup = BeautifulSoup(text, 'html.parser')
@@ -62,5 +68,5 @@ def getSubmission(username):
 	# print(response)
 
 
-getSubmission('qjjjjjj')
+# getSubmission('qjjjjjj')
 # getSubmission('Reidddddd')

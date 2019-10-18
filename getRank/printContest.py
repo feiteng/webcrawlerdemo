@@ -75,11 +75,13 @@ for rowv in range(start, 7):
     y_offset = [y_offset[i] + map[row][i] for i in range(len(y_offset))]
 
 
-username = 'timfan'
+username = 'Lynn'
 if username not in userData:
     users = findUserName(username)
     username = users[0]
     print(users)
+    for name in users:
+        print(userData[name])
 try:
     user = userData[username]
     # userx = [str(i) for i in range(1, num + 4)]
