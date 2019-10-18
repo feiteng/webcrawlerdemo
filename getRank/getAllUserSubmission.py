@@ -30,7 +30,7 @@ for username in userData:
 	submit[username] = detail #[success, total]
 	count += 1
 	# if count % 100 == 0: print(count)
-	print(str(count) + username)
+	print(str(count) + '_' + username)
 	# time.sleep(.1)
 
 

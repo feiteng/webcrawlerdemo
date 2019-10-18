@@ -11,9 +11,12 @@ def getSubmission(username):
     url = "https://leetcode.com/" + username
     r = requests.get(url)
     # print(r.status_code)
+    if r.status_code == 404:
+        print('incorrect name..' + username)
+        return []
     while r.status_code != 200:
         print('retrying..' + username)
-        time.sleep(1)
+        time.sleep(5)
         r = requests.get(url)
     # print(username)
     text = r.text
