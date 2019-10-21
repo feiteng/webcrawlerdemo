@@ -7,7 +7,7 @@ import json
 import os
 import argparse
 from FetchRanks import fetchRanking
-from getUserSubmissions import getSubmission
+from getUserInformation import getSubmission
 
 # from pprint import pprint
 
