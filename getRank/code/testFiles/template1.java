@@ -1,0 +1,1379 @@
+import java.awt.Point;
+import java.io.*;
+import java.util.*;
+import java.math.BigInteger;
+import java.util.Map.*;
+
+
+class Solution {
+    
+        public int minReorder(int n, int[][] connections) {
+        Map<Integer, Set<Integer>> map = new HashMap<>(), dir = new HashMap<>();
+        for(int i = 0; i < n; i++)
+        {
+            map.put(i, new HashSet<>());
+            dir.put(i, new HashSet<>());
+        }
+        
+        for(int[] c : connections)
+        {
+            int u = c[0], v = c[1];
+            dir.get(v).add(u);
+            map.get(u).add(v);
+            map.get(v).add(u);
+        }
+        
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(0);
+        int[] v = new int[n];
+        v[0] = 1;
+        int re = 0;
+        while(!q.isEmpty())
+        {
+            int cur = q.poll();
+            for(int next : map.get(cur))
+            {
+                if(v[next] > 0) continue;
+                v[next] = 1;
+                q.offer(next);
+                if(!dir.get(cur).contains(next)) re++;
+            }
+        }
+        return re;
+    }
+
+
+    public static class FastIO implements AutoCloseable
+    {
+        private InputStream in;
+        private final byte[] buffer = new byte[1024];
+        private int read = 0;
+        private int length = 0;
+        private PrintWriter out;
+        private PrintWriter err;
+        private boolean autoFlush = false;
+        private boolean outFlush = false;
+        private boolean autoOutFlush = true;
+
+        public FastIO() {
+            this(System.in, System.out, System.err);
+        }
+
+        public FastIO(InputStream in, PrintStream out, PrintStream err) {
+            this.in = in;
+            this.out = new PrintWriter(out, false);
+            this.err = new PrintWriter(err, false);
+        }
+
+        public final void setInputStream(InputStream in) {
+            this.in = in;
+        }
+
+        public final void setInputStream(File in) {
+            try {
+                this.in = new FileInputStream(in);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public final void setOutputStream(PrintStream out) {
+            this.out = new PrintWriter(out, false);
+        }
+
+        public final void setOutputStream(File out) {
+            try {
+                this.out = new PrintWriter(new FileOutputStream(out), false);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public final void setErrorStream(PrintStream err) {
+            this.err = new PrintWriter(err, false);
+        }
+
+        public final void setErrorStream(File err) {
+            try {
+                this.err = new PrintWriter(new FileOutputStream(err), false);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public final void setAutoFlush(boolean flush) {
+            autoFlush = flush;
+        }
+
+        public final void setAutoOutFlush(boolean flush) {
+            autoOutFlush = flush;
+        }
+
+        private boolean hasNextByte() {
+            if (read < length) return true;
+            read = 0;
+            try {
+                length = in.read(buffer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return length > 0;
+        }
+
+        private byte readByte() {
+            if (hasNextByte()) return buffer[read++];
+            throw new NoSuchElementException();
+        }
+
+        private boolean readNewLine() {
+            if (hasNextByte()) {
+                if (buffer[read] == '\r') {
+                    ++ read;
+                    if (hasNextByte() && buffer[read] == '\n') ++ read;
+                    return true;
+                }
+                if (buffer[read] == '\n') {
+                    ++ read;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static boolean isPrintableChar(byte c) {
+            return 32 < c || c < 0;
+        }
+
+        private static boolean isNumber(int c) {
+            return '0' <= c && c <= '9';
+        }
+
+        public final boolean hasNext() {
+            while (hasNextByte() && !isPrintableChar(buffer[read])) read++;
+            return hasNextByte();
+        }
+
+        public final char nextChar() {
+            if (outFlush) {
+                outFlush = false;
+                flush();
+            }
+            byte b = readByte();
+            if ((b & 0x80) == 0) return (char)b;
+            if ((b & 0x20) == 0) return (char)((b & 0x1F) << 6 | (readByte() & 0x3F));
+            return (char)((b & 0xF) << 12 | (readByte() & 0x3F) << 6 | (readByte() & 0x3F));
+        }
+
+        public final char[] nextChars() {
+            return next().toCharArray();
+        }
+
+        public final char[] nextChars(char around) {
+            return (around + next() + around).toCharArray();
+        }
+
+        public final char[][] nextChars(int height) {
+            char[][] ret = new char[height][];
+            for (int i = 0;i < ret.length;++ i) ret[i] = nextChars();
+            return ret;
+        }
+
+        public final char[][] nextChars(int height, char around) {
+            char[][] ret = new char[height + 2][];
+            for (int i = 1;i <= height;++ i) ret[i] = nextChars(around);
+            Arrays.fill(ret[0] = new char[ret[1].length], around);
+            Arrays.fill(ret[ret.length - 1] = new char[ret[0].length], around);
+            return ret;
+        }
+
+        public final String next() {
+            if (outFlush) {
+                outFlush = false;
+                flush();
+            }
+            if (!hasNext()) throw new NoSuchElementException();
+            StringBuilder sb = new StringBuilder();
+            do sb.append(nextChar()); while(hasNextByte() && isPrintableChar(buffer[read]));
+            return sb.toString();
+        }
+
+        public final String nextLine() {
+            if (outFlush) {
+                outFlush = false;
+                flush();
+            }
+            StringBuilder sb = new StringBuilder();
+            while(!readNewLine()) sb.append(nextChar());
+            return sb.toString();
+        }
+
+        public final long nextLong() {
+            if (outFlush) {
+                outFlush = false;
+                flush();
+            }
+            if (!hasNext()) throw new NoSuchElementException();
+            long n = 0;
+            try {
+                byte b = readByte();
+                if (b == '-') {
+                    while(isNumber(b = readByte())) n = n * 10 + '0' - b;
+                    return n;
+                } else if (!isNumber(b)) throw new NumberFormatException();
+                do n = n * 10 + b - '0'; while(isNumber(b = readByte()));
+                return n;
+            } catch (NoSuchElementException e) {
+                return n;
+            }
+        }
+
+        public final int nextInt() {
+            if (outFlush) {
+                outFlush = false;
+                flush();
+            }
+            if (!hasNext()) throw new NoSuchElementException();
+            int n = 0;
+            try {
+                byte b = readByte();
+                if (b == '-') {
+                    while(isNumber(b = readByte())) n = n * 10 + '0' - b;
+                    return n;
+                } else if (!isNumber(b)) throw new NumberFormatException();
+                do n = n * 10 + b - '0'; while(isNumber(b = readByte()));
+                return n;
+            } catch (NoSuchElementException e) {
+                return n;
+            }
+        }
+
+        public final double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        public final int[] nextInt(int width) {
+            int[] ret = new int[width];
+            for (int i = 0;i < width;++ i) ret[i] = nextInt();
+            return ret;
+        }
+
+        public final int[] nextInts() {
+            return nextInts(" ");
+        }
+
+        public final int[] nextInts(String parse) {
+            String[] get = nextLine().split(parse);
+            int[] ret = new int[get.length];
+            for (int i = 0;i < ret.length;++ i) ret[i] = Integer.valueOf(get[i]);
+            return ret;
+        }
+
+        public final long[] nextLong(int width) {
+            long[] ret = new long[width];
+            for (int i = 0;i < width;++ i) ret[i] = nextLong();
+            return ret;
+        }
+
+        public final long[] nextLongs() {
+            return nextLongs(" ");
+        }
+
+        public final long[] nextLongs(String parse) {
+            String[] get = nextLine().split(parse);
+            long[] ret = new long[get.length];
+            for (int i = 0;i < ret.length;++ i) ret[i] = Long.valueOf(get[i]);
+            return ret;
+        }
+
+        public final int[][] nextInt(int width, int height) {
+            int[][] ret = new int[height][width];
+            for (int i = 0, j;i < height;++ i) for (j = 0;j < width;++ j) ret[i][j] = nextInt();
+            return ret;
+        }
+
+        public final long[][] nextLong(int width, int height) {
+            long[][] ret = new long[height][width];
+            for (int i = 0, j;i < height;++ i) for (j = 0;j < width;++ j) ret[j][i] = nextLong();
+            return ret;
+        }
+
+        public final boolean[] nextBoolean(char T) {
+            char[] s = next().toCharArray();
+            boolean[] ret = new boolean[s.length];
+            for (int i = 0;i < ret.length;++ i) ret[i] = s[i] == T;
+            return ret;
+        }
+
+        public final boolean[][] nextBoolean(char T, int height) {
+            boolean[][] ret = new boolean[height][];
+            for (int i = 0;i < ret.length;++ i) {
+                char[] s = next().toCharArray();
+                ret[i] = new boolean[s.length];
+                for (int j = 0;j < ret[i].length;++ j) ret[i][j] = s[j] == T;
+            }
+            return ret;
+        }
+
+        public final Point nextPoint() {
+            return new Point(nextInt(), nextInt());
+        }
+
+        public final Point[] nextPoint(int width) {
+            Point[] ret = new Point[width];
+            for (int i = 0;i < width;++ i) ret[i] = nextPoint();
+            return ret;
+        }
+
+        @Override
+        protected void finalize() throws Throwable {
+            try {
+                super.finalize();
+            } finally {
+                in.close();
+                out.close();
+                err.close();
+            }
+        }
+
+        public final boolean print(boolean b) {
+            out.print(b);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return b;
+        }
+
+        public final Object print(boolean b, Object t, Object f) {
+            return b ? print(t) : print(f);
+        }
+
+        public final char print(char c) {
+            out.print(c);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return c;
+        }
+
+        public final char[] print(char[] s) {
+            out.print(s);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return s;
+        }
+
+        public final double print(double d) {
+            out.print(d);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return d;
+        }
+
+        public final double print(double d, int length) {
+            if (d < 0) {
+                out.print('-');
+                d = -d;
+            }
+            d += Math.pow(10, -length) / 2;
+            out.print((long)d);
+            out.print('.');
+            d -= (long)d;
+            for (int i = 0;i < length;++ i) {
+                d *= 10;
+                out.print((int)d);
+                d -= (int)d;
+            }
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return d;
+        }
+
+        public final float print(float f) {
+            out.print(f);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return f;
+        }
+
+        public final int print(int i) {
+            out.print(i);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return i;
+        }
+
+        public final long print(long l) {
+            out.print(l);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return l;
+        }
+
+        public final Object print(Object obj) {
+            if (obj != null && obj.getClass().isArray()) {
+                if (obj instanceof boolean[][]) print(obj, "\n", " ");
+                else if (obj instanceof byte[][]) print(obj, "\n", " ");
+                else if (obj instanceof short[][]) print(obj, "\n", " ");
+                else if (obj instanceof int[][]) print(obj, "\n", " ");
+                else if (obj instanceof long[][]) print(obj, "\n", " ");
+                else if (obj instanceof float[][]) print(obj, "\n", " ");
+                else if (obj instanceof double[][]) print(obj, "\n", " ");
+                else if (obj instanceof char[][]) print(obj, "\n", " ");
+                else if (obj instanceof Object[][]) print(obj, "\n", " ");
+                else print(obj, " ");
+            } else {
+                out.print(obj);
+                if (autoFlush) flush();
+                else outFlush = autoOutFlush;
+            }
+            return obj;
+        }
+
+        public final String print(String s) {
+            out.print(s);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return s;
+        }
+
+        public final Object print(Object array, String... parse) {
+            print(array, 0, parse);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return array;
+        }
+
+        private final Object print(Object array, int check, String... parse) {
+            if (check >= parse.length) {
+                if (array != null && array.getClass().isArray()) throw new IllegalArgumentException("not equal dimension");
+                print(array);
+                return array;
+            }
+            String str = parse[check];
+            if (array instanceof Object[]) {
+                Object[] obj = (Object[]) array;
+                if (obj.length == 0) return array;
+                print(obj[0], check + 1, parse);
+                for (int i = 1;i < obj.length;++ i) {
+                    print(str);
+                    print(obj[i], check + 1, parse);
+                }
+                return array;
+            }
+            if (array instanceof Collection) {
+                Iterator<?> iter = ((Collection<?>)array).iterator();
+                if (!iter.hasNext()) return array;
+                print(iter.next(), check + 1, parse);
+                while(iter.hasNext()) {
+                    print(str);
+                    print(iter.next(), check + 1, parse);
+                }
+                return array;
+            }
+            if (!array.getClass().isArray()) throw new IllegalArgumentException("not equal dimension");
+            if (check != parse.length - 1) throw new IllegalArgumentException("not equal dimension");
+            if (array instanceof boolean[]) {
+                boolean[] obj = (boolean[]) array;
+                if (obj.length == 0) return array;
+                print(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    print(str);
+                    print(obj[i]);
+                }
+            } else if (array instanceof byte[]) {
+                byte[] obj = (byte[]) array;
+                if (obj.length == 0) return array;
+                print(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    print(str);
+                    print(obj[i]);
+                }
+                return array;
+            } else if (array instanceof short[]) {
+                short[] obj = (short[]) array;
+                if (obj.length == 0) return array;
+                print(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    print(str);
+                    print(obj[i]);
+                }
+            } else if (array instanceof int[]) {
+                int[] obj = (int[]) array;
+                if (obj.length == 0) return array;
+                print(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    print(str);
+                    print(obj[i]);
+                }
+            } else if (array instanceof long[]) {
+                long[] obj = (long[]) array;
+                if (obj.length == 0) return array;
+                print(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    print(str);
+                    print(obj[i]);
+                }
+            } else if (array instanceof float[]) {
+                float[] obj = (float[]) array;
+                if (obj.length == 0) return array;
+                print(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    print(str);
+                    print(obj[i]);
+                }
+            } else if (array instanceof double[]) {
+                double[] obj = (double[]) array;
+                if (obj.length == 0) return array;
+                print(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    print(str);
+                    print(obj[i]);
+                }
+            } else if (array instanceof char[]) {
+                char[] obj = (char[]) array;
+                if (obj.length == 0) return array;
+                print(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    print(str);
+                    print(obj[i]);
+                }
+            } else throw new AssertionError();
+            return array;
+        }
+
+        public final Object[] print(String parse, Object... args) {
+            print(args[0]);
+            for (int i = 1;i < args.length;++ i) {
+                print(parse);
+                print(args[i]);
+            }
+            return args;
+        }
+
+        public final Object[] printf(String format, Object... args) {
+            out.printf(format, args);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return args;
+        }
+
+        public final Object printf(Locale l, String format, Object... args) {
+            out.printf(l, format, args);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return args;
+        }
+
+        public final void println() {
+            out.println();
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+        }
+
+        public final boolean println(boolean b) {
+            out.println(b);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return b;
+        }
+
+        public final Object println(boolean b, Object t, Object f) {
+            return b ? println(t) : println(f);
+        }
+
+        public final char println(char c) {
+            out.println(c);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return c;
+        }
+
+        public final char[] println(char[] s) {
+            out.println(s);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return s;
+        }
+
+        public final double println(double d) {
+            out.println(d);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return d;
+        }
+
+        public final double println(double d, int length) {
+            print(d, length);
+            println();
+            return d;
+        }
+
+        public final float println(float f) {
+            out.println(f);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return f;
+        }
+
+        public final int println(int i) {
+            out.println(i);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return i;
+        }
+
+        public final long println(long l) {
+            out.println(l);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return l;
+        }
+
+        public final Object println(Object obj) {
+            print(obj);
+            println();
+            return obj;
+        }
+
+        public final String println(String s) {
+            out.println(s);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return s;
+        }
+
+        public final Object println(Object array, String... parse) {
+            print(array, parse);
+            println();
+            return array;
+        }
+
+        public final boolean debug(boolean b) {
+            err.print(b);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return b;
+        }
+
+        public final Object debug(boolean b, Object t, Object f) {
+            return b ? debug(t) : debug(f);
+        }
+
+        public final char debug(char c) {
+            err.print(c);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return c;
+        }
+
+        public final char[] debug(char[] s) {
+            err.print(s);
+            return s;
+        }
+
+        public final double debug(double d) {
+            err.print(d);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return d;
+        }
+
+        public final double debug(double d, int length) {
+            if (d < 0) {
+                err.print('-');
+                d = -d;
+            }
+            d += Math.pow(10, -length) / 2;
+            err.print((long)d);
+            err.print('.');
+            d -= (long)d;
+            for (int i = 0;i < length;++ i) {
+                d *= 10;
+                err.print((int)d);
+                d -= (int)d;
+            }
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return d;
+        }
+
+        public final float debug(float f) {
+            err.print(f);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return f;
+        }
+
+        public final int debug(int i) {
+            err.print(i);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return i;
+        }
+
+        public final long debug(long l) {
+            err.print(l);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return l;
+        }
+
+        public final Object debug(Object obj) {
+            if (obj != null && obj.getClass().isArray()) {
+                if (obj instanceof boolean[][]) debug(obj, "\n", " ");
+                else if (obj instanceof byte[][]) debug(obj, "\n", " ");
+                else if (obj instanceof short[][]) debug(obj, "\n", " ");
+                else if (obj instanceof int[][]) debug(obj, "\n", " ");
+                else if (obj instanceof long[][]) debug(obj, "\n", " ");
+                else if (obj instanceof float[][]) debug(obj, "\n", " ");
+                else if (obj instanceof double[][]) debug(obj, "\n", " ");
+                else if (obj instanceof char[][]) debug(obj, "\n", " ");
+                else if (obj instanceof Object[][]) debug(obj, "\n", " ");
+                else debug(obj, " ");
+            } else {
+                err.print(obj);
+                if (autoFlush) flush();
+                else outFlush = autoOutFlush;
+            }
+            return obj;
+        }
+
+        public final String debug(String s) {
+            err.print(s);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return s;
+        }
+
+        public final Object debug(Object array, String... parse) {
+            debug(array, 0, parse);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return array;
+        }
+
+        private final Object debug(Object array, int check, String... parse) {
+            if (check >= parse.length) {
+                if (array != null && array.getClass().isArray()) throw new IllegalArgumentException("not equal dimension");
+                debug(array);
+                return array;
+            }
+            String str = parse[check];
+            if (array instanceof Object[]) {
+                Object[] obj = (Object[]) array;
+                if (obj.length == 0) return array;
+                debug(obj[0], check + 1, parse);
+                for (int i = 1;i < obj.length;++ i) {
+                    debug(str);
+                    debug(obj[i], check + 1, parse);
+                }
+                return array;
+            }
+            if (array instanceof Collection) {
+                Iterator<?> iter = ((Collection<?>)array).iterator();
+                if (!iter.hasNext()) return array;
+                debug(iter.next(), check + 1, parse);
+                while(iter.hasNext()) {
+                    debug(str);
+                    debug(iter.next(), check + 1, parse);
+                }
+                return array;
+            }
+            if (!array.getClass().isArray()) throw new IllegalArgumentException("not equal dimension");
+            if (check != parse.length - 1) throw new IllegalArgumentException("not equal dimension");
+            if (array instanceof boolean[]) {
+                boolean[] obj = (boolean[]) array;
+                if (obj.length == 0) return array;
+                debug(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    debug(str);
+                    debug(obj[i]);
+                }
+            } else if (array instanceof byte[]) {
+                byte[] obj = (byte[]) array;
+                if (obj.length == 0) return array;
+                debug(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    debug(str);
+                    debug(obj[i]);
+                }
+                return array;
+            } else if (array instanceof short[]) {
+                short[] obj = (short[]) array;
+                if (obj.length == 0) return array;
+                debug(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    debug(str);
+                    debug(obj[i]);
+                }
+            } else if (array instanceof int[]) {
+                int[] obj = (int[]) array;
+                if (obj.length == 0) return array;
+                debug(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    debug(str);
+                    debug(obj[i]);
+                }
+            } else if (array instanceof long[]) {
+                long[] obj = (long[]) array;
+                if (obj.length == 0) return array;
+                debug(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    debug(str);
+                    debug(obj[i]);
+                }
+            } else if (array instanceof float[]) {
+                float[] obj = (float[]) array;
+                if (obj.length == 0) return array;
+                debug(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    debug(str);
+                    debug(obj[i]);
+                }
+            } else if (array instanceof double[]) {
+                double[] obj = (double[]) array;
+                if (obj.length == 0) return array;
+                debug(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    debug(str);
+                    debug(obj[i]);
+                }
+            } else if (array instanceof char[]) {
+                char[] obj = (char[]) array;
+                if (obj.length == 0) return array;
+                debug(obj[0]);
+                for (int i = 1;i < obj.length;++ i) {
+                    debug(str);
+                    debug(obj[i]);
+                }
+            } else throw new AssertionError();
+            return array;
+        }
+
+        public final Object[] debug(String parse, Object... args) {
+            debug(args[0]);
+            for (int i = 1;i < args.length;++ i) {
+                debug(parse);
+                debug(args[i]);
+            }
+            return args;
+        }
+
+        public final Object[] debugf(String format, Object... args) {
+            err.printf(format, args);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return args;
+        }
+
+        public final Object debugf(Locale l, String format, Object... args) {
+            err.printf(l, format, args);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return args;
+        }
+
+        public final void debugln() {
+            err.println();
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+        }
+
+        public final boolean debugln(boolean b) {
+            err.println(b);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return b;
+        }
+
+        public final Object debugln(boolean b, Object t, Object f) {
+            return b ? debugln(t) : debugln(f);
+        }
+
+        public final char debugln(char c) {
+            err.println(c);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return c;
+        }
+
+        public final char[] debugln(char[] s) {
+            err.println(s);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return s;
+        }
+
+        public final double debugln(double d) {
+            err.println(d);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return d;
+        }
+
+        public final double debugln(double d, int length) {
+            debug(d, length);
+            debugln();
+            return d;
+        }
+
+        public final float debugln(float f) {
+            err.println(f);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return f;
+        }
+
+        public final int debugln(int i) {
+            err.println(i);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return i;
+        }
+
+        public final long debugln(long l) {
+            err.println(l);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return l;
+        }
+
+        public final Object debugln(Object obj) {
+            debug(obj);
+            debugln();
+            return obj;
+        }
+
+        public final String debugln(String s) {
+            err.println(s);
+            if (autoFlush) flush();
+            else outFlush = autoOutFlush;
+            return s;
+        }
+
+        public final Object debugln(Object array, String... parse) {
+            debug(array, parse);
+            debugln();
+            return array;
+        }
+
+        public final void flush() {
+            out.flush();
+            err.flush();
+            outFlush = false;
+        }
+
+        @Override
+        public final void close() {
+            out.close();
+            err.close();
+        }
+    }
+    
+
+
+    public enum BoundType {
+        CLOSED, OPEN;
+    }
+
+    public static class Range<C> implements Serializable{
+
+        private static final long serialVersionUID = -4702828934863023392L;
+        protected C lower;
+        protected C upper;
+        protected BoundType lowerType;
+        protected BoundType upperType;
+        private Comparator<? super C> comparator;
+
+        protected Range(C lower, BoundType lowerType, C upper, BoundType upperType) {
+            this(lower, lowerType, upper, upperType, null);
+        }
+
+        protected Range(C lower, BoundType lowerType, C upper, BoundType upperType, Comparator<? super C> comparator) {
+            this.lower = lower;
+            this.upper = upper;
+            this.lowerType = lowerType;
+            this.upperType = upperType;
+            this.comparator = comparator;
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> range(C lower, BoundType lowerType, C upper, BoundType upperType) {
+            if (lower != null && upper != null) {
+                int comp = lower.compareTo(upper);
+                if (comp > 0) return new Range<C>(null, BoundType.CLOSED, null, BoundType.CLOSED);
+                else if (comp == 0 && (lowerType == BoundType.OPEN || upperType == BoundType.OPEN))return new Range<C>(null, BoundType.CLOSED, null, BoundType.CLOSED);
+            }
+            return new Range<C>(lower, lowerType, upper, upperType);
+        }
+
+        public static <C> Range<C> range(C lower, BoundType lowerType, C upper, BoundType upperType, Comparator<? super C> comparator) {
+            if (lower != null && upper != null) {
+                int comp = comparator.compare(lower, upper);
+                if (comp > 0) return new Range<C>(null, BoundType.CLOSED, null, BoundType.CLOSED, comparator);
+                else if (comp == 0 && (lowerType == BoundType.OPEN || upperType == BoundType.OPEN)) return new Range<C>(null, BoundType.CLOSED, null, BoundType.CLOSED, comparator);
+            }
+            return new Range<C>(lower, lowerType, upper, upperType, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> all() {
+            return range((C)null, BoundType.OPEN, null, BoundType.OPEN);
+        }
+
+        public static <C> Range<C> all(Comparator<? super C> comparator) {
+            return range((C)null, BoundType.OPEN, null, BoundType.OPEN, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> atMost(C upper) {
+            return range(null, BoundType.OPEN, upper, BoundType.CLOSED);
+        }
+
+        public static <C> Range<C> atMost(C upper, Comparator<? super C> comparator) {
+            return range(null, BoundType.OPEN, upper, BoundType.CLOSED, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> lessThan(C upper) {
+            return range(null, BoundType.OPEN, upper, BoundType.OPEN);
+        }
+
+        public static <C> Range<C> lessThan(C upper, Comparator<? super C> comparator) {
+            return range(null, BoundType.OPEN, upper, BoundType.OPEN, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> downTo(C upper, BoundType boundType) {
+            return range(null, BoundType.OPEN, upper, boundType);
+        }
+
+        public static <C> Range<C> downTo(C upper, BoundType boundType, Comparator<? super C> comparator) {
+            return range(null, BoundType.OPEN, upper, boundType, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> atLeast(C lower) {
+            return range(lower, BoundType.CLOSED, null, BoundType.OPEN);
+        }
+
+        public static <C> Range<C> atLeast(C lower, Comparator<? super C> comparator) {
+            return range(lower, BoundType.CLOSED, null, BoundType.OPEN, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> greaterThan(C lower) {
+            return range(lower, BoundType.OPEN, null, BoundType.OPEN);
+        }
+
+        public static <C> Range<C> greaterThan(C lower, Comparator<? super C> comparator) {
+            return range(lower, BoundType.OPEN, null, BoundType.OPEN, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> upTo(C lower, BoundType boundType) {
+            return range(lower, boundType, null, BoundType.OPEN);
+        }
+
+        public static <C> Range<C> upTo(C lower, BoundType boundType, Comparator<? super C> comparator) {
+            return range(lower, boundType, null, BoundType.OPEN, comparator  );
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> open(C lower, C upper) {
+            return range(lower, BoundType.OPEN, upper, BoundType.OPEN);
+        }
+
+        public static <C> Range<C> open(C lower, C upper, Comparator<? super C> comparator) {
+            return range(lower, BoundType.OPEN, upper, BoundType.OPEN, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> openClosed(C lower, C upper) {
+            return range(lower, BoundType.OPEN, upper, BoundType.CLOSED);
+        }
+
+        public static <C> Range<C> openClosed(C lower, C upper, Comparator<? super C> comparator) {
+            return range(lower, BoundType.OPEN, upper, BoundType.CLOSED, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> closedOpen(C lower, C upper) {
+            return range(lower, BoundType.CLOSED, upper, BoundType.OPEN);
+        }
+
+        public static <C> Range<C> closedOpen(C lower, C upper, Comparator<? super C> comparator) {
+            return range(lower, BoundType.CLOSED, upper, BoundType.OPEN, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> closed(C lower, C upper) {
+            return range(lower, BoundType.CLOSED, upper, BoundType.CLOSED);
+        }
+
+        public static <C> Range<C> closed(C lower, C upper, Comparator<? super C> comparator) {
+            return range(lower, BoundType.CLOSED, upper, BoundType.CLOSED, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> singleton(C value) {
+            return range(value, BoundType.CLOSED, value, BoundType.CLOSED);
+        }
+
+        public static <C> Range<C> singleton(C value, Comparator<? super C> comparator) {
+            return range(value, BoundType.CLOSED, value, BoundType.CLOSED, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> empty() {
+            return range((C)null, BoundType.CLOSED, null, BoundType.CLOSED);
+        }
+
+        public static <C> Range<C> empty(Comparator<? super C> comparator) {
+            return range((C)null, BoundType.CLOSED, null, BoundType.CLOSED, comparator);
+        }
+
+        public static <C extends Comparable<? super C>> Range<C> encloseAll(Iterable<C> values) {
+            C lower = values.iterator().next();
+            C upper = lower;
+            for (C i : values) {
+                if (lower.compareTo(i) > 0) lower = i;
+                if (upper.compareTo(i) < 0) upper = i;
+            }
+            return range(lower, BoundType.CLOSED, upper, BoundType.CLOSED);
+        }
+
+        public static <C> Range<C> encloseAll(Iterable<C> values, Comparator<? super C> comparator) {
+            C lower = values.iterator().next();
+            C upper = lower;
+            for (C i : values) {
+                if (comparator.compare(lower, i) > 0) lower = i;
+                if (comparator.compare(upper, i) < 0) upper = i;
+            }
+            return range(lower, BoundType.CLOSED, upper, BoundType.CLOSED, comparator);
+        }
+
+        protected int compareLower(C value) {
+            return compareLower(value, BoundType.CLOSED);
+        }
+
+        protected int compareLower(C value, BoundType boundType) {
+            return compareLower(lower, lowerType, value, boundType);
+        }
+
+        protected int compareLower(C lower, BoundType lowerType, C value) {
+            return compareLower(lower, lowerType, value, BoundType.CLOSED);
+        }
+
+        protected int compareLower(C lower, BoundType lowerType, C value, BoundType boundType) {
+            if (lower == null) return value == null ? 0 : -1;
+            else if (value == null) return 1;
+            int compare;
+            if (comparator == null) {
+                @SuppressWarnings("unchecked")
+                Comparable<C> comp = (Comparable<C>)lower;
+                compare = comp.compareTo(value);
+            } else compare = comparator.compare(lower, value);
+            if (compare == 0) {
+                if (lowerType == BoundType.CLOSED) -- compare;
+                if (boundType == BoundType.CLOSED) ++ compare;
+            }
+            return compare;
+        }
+
+        protected int compareUpper(C value) {
+            return compareUpper(value, BoundType.CLOSED);
+        }
+
+        protected int compareUpper(C value, BoundType boundType) {
+            return compareUpper(upper, upperType, value, boundType);
+        }
+
+        protected int compareUpper(C upper, BoundType upperType, C value) {
+            return compareUpper(upper, upperType, value, BoundType.CLOSED);
+        }
+
+        protected int compareUpper(C upper, BoundType upperType, C value, BoundType boundType) {
+            if (upper == null) return value == null ? 0 : 1;
+            if (value == null) return -1;
+            int compare;
+            if (comparator == null) {
+                @SuppressWarnings("unchecked")
+                Comparable<C> comp = (Comparable<C>)upper;
+                compare = comp.compareTo(value);
+            } else compare = comparator.compare(upper, value);
+            if (compare == 0) {
+                if (upperType == BoundType.CLOSED) ++ compare;
+                if (boundType == BoundType.CLOSED) -- compare;
+            }
+            return compare;
+        }
+
+        public boolean hasLowerBound() {
+            return lower != null;
+        }
+
+        public C lowerEndpoint() {
+            if (hasLowerBound()) return lower;
+            throw new IllegalStateException();
+        }
+
+        public BoundType lowerBoundType() {
+            if (hasLowerBound()) return lowerType;
+            throw new IllegalStateException();
+        }
+
+        public boolean hasUpperBound() {
+            return upper != null;
+        }
+
+        public C upperEndpoint() {
+            if (hasUpperBound()) return upper;
+            throw new IllegalStateException();
+        }
+
+        public BoundType upperBoundType() {
+            if (hasUpperBound()) return upperType;
+            throw new IllegalStateException();
+        }
+
+
+        public boolean isEmpty() {
+            return lower == null && upper == null && lowerType == BoundType.CLOSED;
+        }
+
+
+        public boolean isLess(C value) {
+            return isLess(value, BoundType.CLOSED);
+        }
+
+        protected boolean isLess(C value, BoundType boundType) {
+            return compareLower(value, boundType) > 0;
+        }
+
+
+        public boolean isGreater(C value) {
+            return isGreater(value, BoundType.CLOSED);
+        }
+
+        private boolean isGreater(C value, BoundType boundType) {
+            return compareUpper(value, boundType) < 0;
+        }
+
+        
+        public boolean contains(C value) {
+            return !isLess(value) && !isGreater(value) && !isEmpty();
+        }
+
+        public boolean containsAll(Iterable<? extends C> values) {
+            for (C i : values) if (!contains(i)) return false;
+            return true;
+        }
+
+        
+        public boolean encloses(Range<C> other) {
+            return !isLess(other.lower, other.lowerType) && !isGreater(other.upper, other.upperType);
+        }
+
+        
+        public boolean isConnected(Range<C> other) {
+            if (this.isEmpty() || other.isEmpty()) return false;
+            C lower, upper;
+            BoundType lowerType, upperType;
+            if (isLess(other.lower, other.lowerType)) {
+                lower = other.lower;
+                lowerType = other.lowerType;
+            } else {
+                lower = this.lower;
+                lowerType = this.lowerType;
+            }
+            if (isGreater(other.upper, other.upperType)) {
+                upper = other.upper;
+                upperType = other.upperType;
+            } else {
+                upper = this.upper;
+                upperType = this.upperType;
+            }
+            if (lower == null || upper == null) return true;
+            int comp = compareLower(lower, lowerType, upper, upperType);
+            return comp <= 0;
+        }
+        
+        public Range<C> intersection(Range<C> connectedRange) {
+            if (this.isEmpty() || connectedRange.isEmpty()) {
+                if (comparator == null) return new Range<C>(null, BoundType.CLOSED, null, BoundType.CLOSED);
+                return empty(comparator);
+            }
+            C lower, upper;
+            BoundType lowerType, upperType;
+            if (isLess(connectedRange.lower, connectedRange.lowerType)) {
+                lower = connectedRange.lower;
+                lowerType = connectedRange.lowerType;
+            } else {
+                lower = this.lower;
+                lowerType = this.lowerType;
+            }
+            if (isGreater(connectedRange.upper, connectedRange.upperType)) {
+                upper = connectedRange.upper;
+                upperType = connectedRange.upperType;
+            } else {
+                upper = this.upper;
+                upperType = this.upperType;
+            }
+            if (comparator == null) {
+                return new Range<C>(lower, lowerType, upper, upperType);
+            }
+            return range(lower, lowerType, upper, upperType, comparator);
+        }
+
+        
+        public Range<C> span(Range<C> other) {
+            if (other.isEmpty()) return new Range<C>(lower, lowerType, upper, upperType);
+            C lower, upper;
+            BoundType lowerType, upperType;
+            if (isLess(other.lower, other.lowerType)) {
+                lower = this.lower;
+                lowerType = this.lowerType;
+            } else {
+                lower = other.lower;
+                lowerType = other.lowerType;
+            }
+            if (isGreater(other.upper, other.upperType)) {
+                upper = this.upper;
+                upperType = this.upperType;
+            } else {
+                upper = other.upper;
+                upperType = other.upperType;
+            }
+            return new Range<C>(lower, lowerType, upper, upperType, comparator);
+        }
+
+       
+        public static <C> List<Range<C>> scheduling(List<Range<C>> ranges) {
+            PriorityQueue<Range<C>> pq = new PriorityQueue<Range<C>>((l, r) -> l.compareUpper(r.upper, r.upperType));
+            List<Range<C>> ret = new ArrayList<>();
+            Range<C> last = pq.poll();
+            if (pq.isEmpty()) return ret;
+            ret.add(last);
+            while(!pq.isEmpty()) {
+                Range<C> tmp = pq.poll();
+                if (tmp.compareLower(last.upper, last.upperType) > 0) {
+                    ret.add(tmp);
+                    last = tmp;
+                }
+            }
+            return ret;
+        }
+
+        @Override
+        public boolean equals(Object object) {
+            if (this == object) return true;
+            if (object instanceof Range) {
+                @SuppressWarnings("unchecked")
+                Range<C> comp = (Range<C>) object;
+                return compareLower(comp.lower, comp.lowerType) == 0 && compareUpper(comp.upper, comp.upperType) == 0 && lowerType == comp.lowerType && upperType == comp.upperType;
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            if (lower == null && upper == null) return 0;
+            else if (lower == null) return upper.hashCode();
+            else if (upper == null) return lower.hashCode();
+            return lower.hashCode() ^ upper.hashCode();
+        }
+
+        @Override
+        public String toString() {
+            if (isEmpty()) return "()";
+            return (lowerType == BoundType.OPEN ? "(" : "[") + (lower == null ? "" : lower.toString()) + ".." + (upper == null ? "" : upper.toString()) + (upperType == BoundType.OPEN ? ")" : "]");
+        }
+    }
+
+
+}

@@ -1,0 +1,7 @@
+java -jar jplag-2.12.1-SNAPSHOT-jar-with-dependencies.jar -l java19 -r ./JPLAGResult/javaResult/1562 -s "Contest submission\cn-189\java\1562"
+java -jar jplag-2.12.1-SNAPSHOT-jar-with-dependencies.jar -l c/c++ -r ./JPLAGResult/cppResult/1563 -s "Contest submission\cn-189\cpp\1563"
+java -jar jplag-2.12.1-SNAPSHOT-jar-with-dependencies.jar -l python3 -r ./JPLAGResult/pyResult/1563 -s "Contest submission\cn-189\python3\1563"
+
+-l language
+-r result folder
+-s source folder
