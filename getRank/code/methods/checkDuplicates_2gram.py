@@ -59,4 +59,4 @@ def contest_duplicate(contest):
                     print("language = %s question = %s %s\t%s\t%f" % (coding_language, question, file1name, mostSimilarAccount, maxSimilarity))
 
 
-contest_duplicate('189')
+contest_duplicate('CN-191')

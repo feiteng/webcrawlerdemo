@@ -16,7 +16,7 @@ import json
 
 
 
-def fetchContestPage(contest, page, CNRegion = False, biweeklyContest = False):
+def fetchContestPage(contest, page = 500, CNRegion = False, biweeklyContest = False):
 
     urlOne = "https://leetcode.com/contest/api/ranking/warm-up-contest/?pagination=%d"
     urlOld = "https://leetcode.com/contest/api/ranking/leetcode-weekly-contest-%s/?pagination=%d"
@@ -56,61 +56,34 @@ def fetchContestPage(contest, page, CNRegion = False, biweeklyContest = False):
     if biweeklyContest: contestName = 'biweekly-' + contestName
     if CNRegion: contestName = 'CN-' + contestName
     outputLocation = 'C:/Users/lifeiteng/projects/visualizer/getRank/Contest JSON/' + contestName + '/'
-    # genUserLocation = 'C:/Users/lifeiteng/projects/visualizer/getRank/User Information/'
+    user_num = 0
 
     for i in range(start, end + 1):
 
+        if(i % 10 == 0): print('on page %d' % i)
         if contest == 1 or contest == 62: curURL = url % i
         else: curURL = url % (str(contest), i)
 
         try:
-            r = requests.get(curURL)
-            str_response = r.json()
-            if(len(str_response) < 1): break
-
+            # if file exists pass
             if not os.path.exists(outputLocation):
                 os.makedirs(outputLocation)
-            outputFileLocation = outputLocation + str(i) + '.json'
-            with open(outputFileLocation, 'a') as outputFile:
-                json.dump(str_response, outputFile)
-            #
-            # submissions = str_response['submissions']
-            # total_rank = str_response['total_rank']
-            #
-            # N = len(total_rank)
-            # print("processing page.. %d .. responses = %d" % (i, N))
-            #
-            # for user in range(N):
-            #
-            #     line = total_rank[user]
-            #
-            #     submission = submissions[user]
-            #     data_region = line['data_region']
-            #     username = line['username']
-            #     userrank = line['rank']
-            #
-            #     for k in submission:
-            #         kth_submission = submission[k]
-            #         submission_id = kth_submission['submission_id']
-            #         submissionRequestURL = submissionURL
-            #         if data_region == 'CN':
-            #             submissionRequestURL = submissionURLCN
-            #         submissionRequestURL = submissionRequestURL % submission_id
-            #         submissionResponse = requests.get(submissionRequestURL)
-            #         submissionResponse = submissionResponse.json()
-            #         coding_content =  submissionResponse['code']
-            #         coding_language = submissionResponse['lang']
-            #         fileLocation = outputLocation + coding_language + '/' + str(k)
-            #         if not os.path.exists(fileLocation):
-            #             os.makedirs(fileLocation)
-            #
-            #         # save as contest - code language - [username][code content]
-            #         filename = fileLocation + '/' + str(userrank) + '_' + username + '.' + codingSuffix[coding_language]
-            #         file = open(filename, 'w')
-            #         file.write(coding_content)
-            #         file.close()
+            outputFile = outputLocation + str(i) + '.json'
+            if os.path.exists(outputFile): continue            
+
+            r = requests.get(curURL)
+            str_response = r.json()
+            user_num = str_response['user_num']
+
+            if i > user_num / 25 + 1: break
+            if(len(str_response) < 1): break
+
+            
+            
+            with open(outputFile, 'a') as outputFile_:
+                json.dump(str_response, outputFile_)
         except Exception as err:
             print(err)
             pass
+    return True
 
-fetchContestPage(191, 4, CNRegion= False, biweeklyContest = False)

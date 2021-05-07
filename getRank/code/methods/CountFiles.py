@@ -34,9 +34,12 @@ def contestFileCount(contest):
 
     print(language)
     print(question)
-
+    print("\t\t", end = '')
+    for q in question:
+        print("%s\t" % str(q), end = '')
+    print()
     for codingLanguage in data:
-        print("%s\t" % codingLanguage, end = '')
+        print("%s\t\t" % codingLanguage, end = '')
         for question in data[codingLanguage]:
             print("%d\t" % data[codingLanguage][question], end = '')
         print()
@@ -50,4 +53,4 @@ def contestFileCount(contest):
     #     print()
 
 
-contestFileCount('191')
+contestFileCount('CN-191')

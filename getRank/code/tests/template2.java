@@ -3,6 +3,49 @@ import java.util.*;
 
 public class Solution{
 
+    public String reformatDate(String date) {
+        String[] split = date.split(" ");
+        String[] month = {"", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        
+        String day = split[0], mon = split[1], year = split[2];
+        day = day.substring(0, day.length() - 2);
+        if(day.length() < 2) day = "0" + day;
+        int monInt = 0;
+        for(int i = 1; i <= 12; i++)
+        {
+            if(month[i].equals(mon)) monInt = i;
+        }
+        String monthStr = "" + monInt;
+        if(monthStr.length() < 2) monthStr = "0" + monthStr;
+        return year + "-" + monthStr + "-" + day;
+    }
+
+    public int minCost(int n, int[] cuts) {
+        Arrays.sort(cuts);
+        for(int[] dd : dp)
+        {
+            Arrays.fill(dd, -1);
+        }
+        return cut(0, n, cuts, 0, cuts.length - 1);
+    }
+    
+    int[][] dp = new int[110][110];
+    
+    int cut(int from, int to, int[] cuts, int cut_from, int cut_to)
+    {
+        if(cut_from > cut_to) return 0;
+        if(dp[cut_from][cut_to] >= 0) return dp[cut_from][cut_to];
+        
+        int total = 1 << 30;
+        for(int i = cut_from; i <= cut_to; i++)
+        {
+            if(cuts[i] < from || cuts[i] > to) continue;
+            total = Math.min(total, to - from + 
+                cut(from, cuts[i], cuts, cut_from, i - 1) + 
+                cut(cuts[i], to, cuts, i + 1, cut_to));
+        }
+        return dp[cut_from][cut_to] = total;
+    }        
 
     public int maxArea(int h, int w, int[] horizontalCuts, int[] verticalCuts) {
         List<Integer> hor = new ArrayList<>(), col = new ArrayList<>();
@@ -16,6 +59,70 @@ public class Solution{
         Collections.sort(col);
         return calc(hor, col);
     }
+
+    public String makeGood(String s) {
+        Stack<Character> st = new Stack<>();
+        for(char c : s.toCharArray())
+        {
+            if(!st.isEmpty() && 
+               st.peek() != c && (
+               Character.toUpperCase(st.peek()) == c || 
+               Character.toLowerCase(st.peek()) == c                
+               ))
+            {
+                st.pop();
+            }
+            else
+            {
+                st.push(c);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!st.isEmpty())
+        {
+            sb.append(st.pop());
+        }
+        return sb.reverse().toString();
+    }
+
+    
+    public int numIdenticalPairs(int[] nums) {
+        int re = 0;
+        int n = nums.length;
+        
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = i + 1; j < n; j++)
+            {
+                if(nums[i] == nums[j]) re++;
+            }
+        }
+        return re;
+    }
+
+    String invert(String str)
+    {
+        int n = str.length();
+        char[] c = new char[n];
+        for(int i = 0; i < n; i++)
+        {
+            c[n - 1 - i] = str.charAt(i) == '0' ? '1' : '0';
+        }
+        return String.valueOf(c);
+    }
+
+    public char findKthBit(int n, int k) {
+        String s = "0";
+        while(n > 0)
+        {
+            s = s + "1" + invert(s);
+            n--;
+        }
+        return s.charAt(k - 1);
+    }
+    
+    
+
     
     int calc(List<Integer> l1, List<Integer> l2)
     {
@@ -36,6 +143,245 @@ public class Solution{
         }
         
         return (int)(dx * dy % mod);
+    }
+
+    public int maxNonOverlapping(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int sum = 0, re = 0, n = nums.length;
+        
+        map.put(0, 0);
+        for(int i = 0; i < n; i++)
+        {
+            sum += nums[i];
+            if(map.containsKey(sum - target))
+            {
+                re++;
+                sum = 0;
+                map = new HashMap<>();
+                map.put(0, 0);
+            }
+            map.put(sum, 1);
+        }
+        return re;
+    }    
+        public int rangeSum(int[] nums, int n, int left, int right) {
+        for(int i = 1; i < n; i++)
+        {
+            nums[i] += nums[i - 1];
+        }
+        
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = i; j < n; j++)
+            {
+                int prev = i - 1 >= 0 ? nums[i - 1] : 0;
+                list.add(nums[j] - prev);
+            }
+        }
+        
+        Collections.sort(list);
+        // System.out.println(list);
+        int sum = 0;
+        for(int i = left - 1; i <= right - 1; i++)
+        {
+            sum += list.get(i);
+        }
+        return sum;
+    }
+
+    public int numSub(String s) {
+        int i = 0;
+        int j = 0;
+        int n = s.length();
+        int mod = 1_000_000_007;
+
+        long re = 0;
+        
+        while(i < n)
+        {
+            while(i < n && s.charAt(i) == '0') {i++;}
+            j = i;
+            while(j < n && s.charAt(j) == '1') {j++;}
+            int len = j - i;
+            re += 1L * len * (len + 1) / 2;
+            re %= mod;
+            i = j;
+        }
+        return (int) re;
+    }
+
+        public int numSubseq(int[] nums, int target) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        int j = n - 1;
+        long ans = 0, mod = 1_000_000_007;
+        long[] pow = new long[1_000_10];
+        pow[0] = 1;
+        for(int i = 1; i <= 100_000; i++)
+        {
+            pow[i] = pow[i - 1] * 2 % mod;
+        }
+        for(int i = 0; i < n; i++)
+        {
+            while(j >= i && nums[i] + nums[j] > target) j--;
+            if(j < i) break;
+            int len = j - i;
+            ans += pow[len];
+        }
+        return (int)(ans % mod);
+    }
+
+    double[] probs;
+    public double maxProbability(int n, int[][] edges, double[] succProb, int start, int end) {
+        probs = new double[n];
+        Map<Integer, Map<Integer, Double>> map = new HashMap<>();
+        for(int i = 0; i < n; i++) {map.put(i, new HashMap<>());}
+        int len = edges.length;
+        for(int i = 0; i < len; i++)
+        {
+            double p = succProb[i];
+            int from = edges[i][0];
+            int to = edges[i][1];
+            map.get(to).put(from, p);
+            map.get(from).put(to, p);
+            
+        }
+        probs[start] = 1.0;
+        return prob(start, end, map);
+    }
+    
+    double prob(int from, int to, Map<Integer, Map<Integer, Double>> map)
+    {
+        double ans = 0.0;
+        Queue<Double> prob = new LinkedList<>();
+        Queue<Integer> q = new LinkedList<>();
+        
+        q.offer(from);
+        prob.offer(1.0);
+        while(!q.isEmpty())
+        {
+            double curProb = prob.poll();
+            int cur = q.poll();
+            
+            for(int next : map.get(cur).keySet())
+            {
+                double nextProb = curProb * map.get(cur).get(next);
+                if(probs[next] >= nextProb) continue;
+                probs[next] = nextProb;
+                q.offer(next);
+                prob.offer(nextProb);
+            }
+        }
+        return probs[to];
+    }    
+
+        public int minDifference(int[] nums) {
+        int n = nums.length;
+        if(n <= 4) return 0;
+        Arrays.sort(nums);
+        int d1 = nums[n - 4] - nums[0],
+            d2 = nums[n - 3] - nums[1],
+            d3 = nums[n - 2] - nums[2],
+            d4 = nums[n - 1] - nums[3];
+        return Math.min(Math.min(Math.min(d1, d2), d3), d4);
+    }
+
+        public int findMaxValueOfEquation(int[][] points, int k) {
+        int n = points.length;
+        int j = 0;
+        Deque<int[]> q = new LinkedList<>();
+        int maxi = Integer.MIN_VALUE;
+        for(int i = 0; i < n; i++)
+        {
+            int xi = points[i][0];
+            int yi = points[i][1];
+            while(!q.isEmpty() && q.peekFirst()[0] + k < xi) q.pollFirst();
+            if(!q.isEmpty()) maxi = Math.max(maxi, q.peekFirst()[1] + yi + xi);
+            while(!q.isEmpty() && q.peekLast()[1] <= yi - xi) q.pollLast();
+            q.offerLast(new int[]{xi, yi - xi});
+        }
+        return maxi;
+    }
+
+    public double getMinDistSum(int[][] positions) {
+        double x = 0.0;
+        double y = 0.0;
+        int n = positions.length;
+        for(int[] p : positions)
+        {
+            x += p[0];
+            y += p[1];
+        }
+        x /= n;
+        y /= n;
+        
+        double distance = distanceSum(x, y, positions);
+        int k = 0;
+        for(int i = 0; i < n; i++)
+        {
+            double nx = 1.0 * positions[i][0], 
+                ny = 1.0 * positions[i][1];
+            double newDistance = distanceSum(nx, ny, positions);
+            if(newDistance < distance)
+            {
+                distance = newDistance;
+                x = nx;
+                y = ny;
+            }
+        }
+        
+        double test_distance = 1000.0, lower_limit = 0.000001;
+        
+        int[] dx = {1, 0, -1, 0}, dy = {0, 1, 0, -1};
+        while(test_distance > lower_limit)
+        {
+            boolean found = false;
+            for(int i = 0; i < 4; i++)
+            {
+                double nx = x + dx[i] * test_distance;
+                double ny = y + dy[i] * test_distance;
+                double newDistance = distanceSum(nx, ny, positions);
+                if(newDistance < distance)
+                {
+                    distance = newDistance;
+                    x = nx;
+                    y = ny;
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) {test_distance /= 2;}
+        }        
+        
+        return distance;
+    }
+    
+    double distanceSum(double x, double y, int[][] pos)
+    {
+        double sum = 0;
+        for(int[] p : pos)
+        {
+            double dx = x - p[0], dy = y - p[1];
+            sum += Math.sqrt(dx * dx + dy * dy);
+        }
+        return sum;
+    }    
+
+        public boolean winnerSquareGame(int n) {
+        boolean[][] f = new boolean[n + 1][2];
+        f[1][0] = true;
+        f[1][1] = true;
+        for(int i = 2; i <= n; i++)
+        {
+            for(int j = 1; j * j <= i; j++)
+            {
+                f[i][0] |= !f[i - j * j][1];
+                f[i][1] |= !f[i - j * j][0];
+            }
+        }
+        
+        return f[n][0];
     }
 
     

@@ -21,8 +21,8 @@ def calculateSimilarity(string1, string2):
         prob = 0.0
     return prob
 
-file1 = "testFiles/template1"
-file2 = "testFiles/template2"
+file1 = "template1"
+file2 = "template2"
 
 maxSimilarity = 0
 

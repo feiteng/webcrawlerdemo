@@ -97,4 +97,3 @@ def parseJSON(contest):
             with open(processedJSON, 'w') as outputFile:
                 json.dump(processedID, outputFile)
 
-parseJSON('CN-191')
