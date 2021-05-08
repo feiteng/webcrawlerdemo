@@ -51,7 +51,7 @@ def parseJSON(contest):
         pass
     for i in range(1, 42):
         try:
-            JSONFile = JSON_Location + str(i) + '.JSON'
+            JSONFile = JSON_Location + str(i) + '.json'
             str_response = {}
             with open(JSONFile) as file:
                 str_response = json.load(file)
