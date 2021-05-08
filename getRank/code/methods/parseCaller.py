@@ -27,7 +27,7 @@ try:
 	print('Finished fetching submission..')
 	questionList = []
 	# ContestSubmission = 'C:/Users/lifeiteng/projects/visualizer/getRank/Contest submission/'
-	ContestSubmission = dir + '/Contest submission/'
+	ContestSubmission = dir + '/Contest submission'
 	contestPath = ContestSubmission + '/' + str(contest) + '/cpp'
 
 	for folder in os.scandir(contestPath):

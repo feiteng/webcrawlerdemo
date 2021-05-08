@@ -55,7 +55,9 @@ def fetchContestPage(contest, page = 500, CNRegion = False, biweeklyContest = Fa
     contestName = str(contest)
     if biweeklyContest: contestName = 'biweekly-' + contestName
     if CNRegion: contestName = 'CN-' + contestName
-    outputLocation = 'C:/Users/lifeiteng/projects/visualizer/getRank/Contest JSON/' + contestName + '/'
+    # outputLocation = 'C:/Users/lifeiteng/projects/visualizer/getRank/Contest JSON/' + contestName + '/'
+    dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    outputLocation = dir + '/Contest JSON/' + contestName + '/'
     user_num = 0
 
     for i in range(start, end + 1):

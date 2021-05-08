@@ -28,13 +28,15 @@ def parseJSON(contest):
 
 
     contestName = str(contest)
+    dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     submissionURL = "https://leetcode.com/api/submissions/%d"
     submissionURLCN = "https://leetcode-cn.com/api/submissions/%d"
 
     print("processing... %s " % contestName)
 
-    JSON_Location = 'C:/Users/lifeiteng/projects/visualizer/getRank/Contest JSON/' + contestName + '/'
-    outputLocation = 'C:/Users/lifeiteng/projects/visualizer/getRank/Contest Submission/' + contestName + '/'
+    # JSON_Location = 'C:/Users/lifeiteng/projects/visualizer/getRank/Contest JSON/' + contestName + '/'
+    JSON_Location = dir + '/Contest JSON/' + contestName + '/'
+    outputLocation = dir + '/Contest Submission/' + contestName + '/'
     processedJSON = outputLocation + 'processed.JSON'
     processedID = {}
     try:
