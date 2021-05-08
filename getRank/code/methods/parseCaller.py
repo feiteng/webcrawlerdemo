@@ -15,9 +15,9 @@ print(dir)
 # print("contest = %d .. pages = %d" % (contest, pages))
 
 try:
-	# input = sys.argv
-	# contest = int(input[1])
-	# pages = int(input[2])
+	input = sys.argv
+	contest = int(input[1])
+	pages = int(input[2])
 
 	print("contest = %d .. pages = %d" % (contest, pages))
 
