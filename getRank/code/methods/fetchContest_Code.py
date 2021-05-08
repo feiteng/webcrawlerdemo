@@ -41,7 +41,7 @@ def parseJSON(contest):
     outputLocation = dir + '/Contest Submission/' + contestName + '/'
     if not os.path.exists(outputLocation):
         os.makedirs(outputLocation)
-    processedJSON = outputLocation + 'processed.JSON'
+    processedJSON = outputLocation + 'processed.json'
     processedID = {}
     try:
         with open(processedJSON) as file:
