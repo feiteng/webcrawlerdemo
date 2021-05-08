@@ -36,7 +36,11 @@ def parseJSON(contest):
 
     # JSON_Location = 'C:/Users/lifeiteng/projects/visualizer/getRank/Contest JSON/' + contestName + '/'
     JSON_Location = dir + '/Contest JSON/' + contestName + '/'
+    if not os.path.exists(JSON_Location):
+        os.makedirs(JSON_Location)
     outputLocation = dir + '/Contest Submission/' + contestName + '/'
+    if not os.path.exists(outputLocation):
+        os.makedirs(outputLocation)
     processedJSON = outputLocation + 'processed.JSON'
     processedID = {}
     try:
